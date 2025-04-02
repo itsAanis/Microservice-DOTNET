@@ -68,10 +68,8 @@ namespace SuccessApi.Controllers
         [HttpPost("vehicles")]
         public async Task<IActionResult> AddVehicleToDb(VehicleModelAPI vehicle)
         {
-
             try
             {
-
                 VehicleBaseDto vehicleDto = new VehicleBaseDto
                 {
                     Model = vehicle.Model,
@@ -95,9 +93,7 @@ namespace SuccessApi.Controllers
                 _logger.LogError(ex,
                   "An error occurred while getting");
             }
-
             return StatusCode((int)HttpStatusCode.InternalServerError);
-
         }
 
 
@@ -116,14 +112,8 @@ namespace SuccessApi.Controllers
                 Price = vehicle.Price,
                 Mileage = vehicle.Mileage
             };
-
-
             bool result = await _vehicleService.UpdateVehicleInDb(id, vehicleDto);
-
-           
-
             return Ok(result);
-
         }
 
 
@@ -132,16 +122,13 @@ namespace SuccessApi.Controllers
         [HttpDelete("vehicles/{id}")]
         public async Task<IActionResult> DeleteVehicle(int id)
         {
-
             bool result = await _vehicleService.DeleteVehicleById(id);
 
             if (result == false)
             {
                 return NotFound();
             }
-
             return Ok(result);
-
         }
 
         [HttpGet("images{id}")]
@@ -151,28 +138,20 @@ namespace SuccessApi.Controllers
             // take vehicle in but return vehicle and images
 
             var result = await _vehicleImageService.GetVehicleById(id);
-
-
             VehicleBaseDto results = await _vehicleService.GetVehicleById(id);
-
-
-
+            
             if (result == null)
             {
                 return NotFound();
             }
-
-
             Object resultss = new
             {
                 Image = result,
                 Vehicle = results
-
-
+                
             };
 
             return Ok(resultss);
-
         }
 
 /*
