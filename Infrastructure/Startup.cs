@@ -28,9 +28,9 @@ namespace Recreate
             }
 
 
-            string ConnectionStrings = "TrustServerCertificate = True; Data Source=I011LT42397\\SQLEXPRESS;Initial Catalog=SucessDb;User ID=sa; Password=H3xag0n2019";
+            
 
-            services.AddDbContext<RecreateDbContext>(options => options.UseSqlServer(ConnectionStrings));
+        //    services.AddDbContext<RecreateDbContext>(options => options.UseSqlServer(ConnectionStrings));
 
             services.AddServices(configuration);
             
